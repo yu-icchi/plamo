@@ -1,0 +1,25 @@
+{
+  "name": "plamo",
+  "version": "0.0.1",
+  "homepage": "https://github.com/yu-ichiko/plamo",
+  "authors": [
+    "yuta <yu.ichiko@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "typeahead.js": "~0.10.5",
+    "sticky": "~1.0.1",
+    "sweetalert": "~0.3.3",
+    "expanding-textareas": "~0.2.0",
+    "handlebars": "~2.0.0"
+  }
+}
