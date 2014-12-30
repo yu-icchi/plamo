@@ -20,6 +20,8 @@
     "sticky": "~1.0.1",
     "sweetalert": "~0.3.3",
     "expanding-textareas": "~0.2.0",
-    "handlebars": "~2.0.0"
+    "handlebars": "~2.0.0",
+    "jquery-hashchange": "*",
+    "bootstrap": "~3.3.1"
   }
 }

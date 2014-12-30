@@ -3,6 +3,8 @@
  * @author yu-ichiko@gmail.com
  */
 
+var domain = require('domain');
+
 var gulp = require('gulp');
 var handlebars = require('gulp-handlebars');
 var wrap = require('gulp-wrap');
@@ -16,15 +18,18 @@ var browserSync = require('browser-sync');
 /**
  * Handlebars template build
  */
-gulp.task('templates', function() {
-  gulp.src('src/templates/*.hbs')
+gulp.task('views', function() {
+  gulp.src('src/views/**/*.hbs')
     .pipe(handlebars())
     .pipe(wrap('Handlebars.template(<%= contents %>)'))
     .pipe(declare({
-      namespace: 'App.templates',
-      noRedeclare: true
+      namespace: 'views',
+      noRedeclare: true,
+      processName: function(filePath) {
+        return declare.processNameByPath(filePath.replace('src/views/', ''));
+      }
     }))
-    .pipe(concat('templates.js'))
+    .pipe(concat('views.js'))
     .pipe(gulp.dest('public/js/'));
 });
 
@@ -42,7 +47,7 @@ gulp.task('build', function() {
   });
 
   return bundler.bundle()
-    .pipe(source('app.js'))
+    .pipe(source('application.js'))
     .pipe(buffer())
     .pipe(gulp.dest('./public/js/'));
 });
@@ -57,22 +62,18 @@ gulp.task('browserSync', function() {
     },
     port: 8080,
     files: [
-      './js/**',
-      './css/**',
-      './img/**',
-      './index.html'
+      './public/js/**',
+      './public/css/**',
+      './public/img/**',
+      './public/index.html'
     ]
   });
-});
-
-gulp.task('setWatch', function() {
-  global.isWatching = true;
 });
 
 /**
  * Watch task
  */
-gulp.task('watch', function() {
+gulp.task('watch', ['build', 'views', 'browserSync'], function() {
   gulp.watch('./src/**/*.js', ['build']);
-  gulp.watch('./src/**/*.hbs', ['build']);
+  gulp.watch('./src/views/**/*.hbs', ['views']);
 });

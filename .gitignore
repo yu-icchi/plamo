@@ -31,4 +31,5 @@ npm-debug.log
 
 plamo.iml
 
-.idea
+public/js/application.js
+public/js/template.js

@@ -1,2 +1,1 @@
-plamo
-=====
+# plamo.js
