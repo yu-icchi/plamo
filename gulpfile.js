@@ -4,34 +4,13 @@
  */
 
 var domain = require('domain');
+var d = domain.create();
 
 var gulp = require('gulp');
-var handlebars = require('gulp-handlebars');
-var wrap = require('gulp-wrap');
-var declare = require('gulp-declare');
-var concat = require('gulp-concat');
 var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
 var source = require('vinyl-source-stream');
 var browserSync = require('browser-sync');
-
-/**
- * Handlebars template build
- */
-gulp.task('views', function() {
-  gulp.src('src/views/**/*.hbs')
-    .pipe(handlebars())
-    .pipe(wrap('Handlebars.template(<%= contents %>)'))
-    .pipe(declare({
-      namespace: 'views',
-      noRedeclare: true,
-      processName: function(filePath) {
-        return declare.processNameByPath(filePath.replace('src/views/', ''));
-      }
-    }))
-    .pipe(concat('views.js'))
-    .pipe(gulp.dest('public/js/'));
-});
 
 /**
  * Build task
@@ -73,7 +52,11 @@ gulp.task('browserSync', function() {
 /**
  * Watch task
  */
-gulp.task('watch', ['build', 'views', 'browserSync'], function() {
-  gulp.watch('./src/**/*.js', ['build']);
-  gulp.watch('./src/views/**/*.hbs', ['views']);
+gulp.task('watch', ['build', 'browserSync'], function() {
+  d.run(function() {
+    gulp.watch('./src/**/*', ['build']);
+  });
+  d.on('error', function(err) {
+    console.error(err);
+  });
 });
