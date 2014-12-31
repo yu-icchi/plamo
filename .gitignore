@@ -32,4 +32,4 @@ npm-debug.log
 plamo.iml
 
 public/js/application.js
-public/js/template.js
+public/js/views.js
