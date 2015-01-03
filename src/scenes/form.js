@@ -1,17 +1,9 @@
-/**
- * @fileOverview home
- * @author yu-ichiko@gmail.com
- */
 
 var $ = require('jquery');
 
-var home = require('../templates/home.hbs');
+var formSpecs = require('../templates/formspecs.hbs');
 
-/**
- * FormSpecs
- * @type {Array}
- */
-exports.form = [
+var form = [
   {
     label: '文字列',
     name: 'id',
@@ -59,6 +51,9 @@ exports.form = [
 ];
 
 exports.render = function() {
-  console.log('home');
-  $('#main').empty().append(home({test:'home'}));
+  console.log('formSpecs', form);
+  $('#main').empty().append(formSpecs({
+    form: form,
+    data: {test: 'form'}
+  }));
 };

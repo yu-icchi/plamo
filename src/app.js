@@ -3,38 +3,29 @@
  * @author yu-ichiko@gamil.com
  */
 
-/*global window, location*/
-
 var $ = require('jquery');
-var _s = require('underscore.string');
-var page = require('page');
+var Router = require('director').Router;
 
-var home = require('./scenes/home');
-var user = require('./scenes/user');
+var route = require('./route');
 var view = require('./view');
-
-/**
- * location.hash change event
- */
-function onHashChange() {
-  var hash = _s.strRight(location.hash, '#!');
-  // ハッシュ値先にリダイレクトをかける
-  page.redirect(hash);
-}
 
 /**
  * Application Execute
  */
 $(function() {
 
-  // ルーティング設定
-  page('/', home);
-  page('/user', user);
-  page('*', view.notFound);
-  page.start({
-    hashbang: true
-  });
+  // Handlebarsのヘルパーのセットアップ
+  require('./helper');
 
-  // ハッシュチェンジイベント設定
-  window.onhashchange = onHashChange;
+  // URIルーティング
+  var router = new Router(route);
+  router.configure({
+    notfound: view.notFound
+  });
+  router.init('/'); // base root
+
+  // ヘッダーを生成する
+  view.createHeader();
+  // メニューバーを生成する
+  view.createMenu();
 });

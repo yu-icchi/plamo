@@ -6,7 +6,10 @@
 var domain = require('domain');
 var d = domain.create();
 
+var async = require('async');
+
 var gulp = require('gulp');
+var bower = require('gulp-bower');
 var browserify = require('browserify');
 var buffer = require('vinyl-buffer');
 var source = require('vinyl-source-stream');

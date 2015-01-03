@@ -1,7 +1,7 @@
 var $ = require('jquery');
 var template = require('../templates/user/index.hbs');
 
-module.exports = function(ctx, next) {
-  console.log('user');
+exports.render = function(ctx) {
+  console.log('user', ctx);
   $('#main').empty().append(template('user'));
 };
