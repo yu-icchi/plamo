@@ -54,6 +54,6 @@ exports.render = function() {
   console.log('formSpecs', form);
   $('#main').empty().append(formSpecs({
     form: form,
-    data: {test: 'form'}
+    data: {id: 'test'}
   }));
 };
