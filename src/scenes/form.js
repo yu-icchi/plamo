@@ -6,52 +6,47 @@ var formSpecs = require('../templates/formspecs.hbs');
 var form = [
   {
     label: '文字列',
-    name: 'id',
-    type: 'string'
+    key: '_id',
+    type: 'string',
+    placeholder: 'IDを入力してください'
   },
   {
     label: '数字(整数)',
-    name: 'point',
+    key: 'point',
     type: 'integer'
   },
   {
     label: '数字(実数)',
-    name: 'date',
+    key: 'date',
     type: 'number'
   },
   {
-    label: 'グループ',
-    name: 'group',
+    label: 'グループだよー',
+    key: 'group',
     type: 'group',
     fields: [
       {
         label: 'テスト01',
-        name: 'test01',
-        type: 'date'
+        key: 'test01',
+        type: 'textarea',
+        value: 'ほほほほほほほほほほお'
       },
       {
         label: 'テスト02',
-        name: 'test02',
+        key: 'test02',
         type: 'integer'
-      }
-    ]
-  },
-  {
-    label: 'マルチプル',
-    name: 'multiple',
-    type: 'multiple',
-    fields: [
+      },
       {
-        label: 'テスト03',
-        name: 'test03',
-        type: 'string'
+        label: 'テスト02',
+        key: 'test02',
+        type: 'integer'
       }
     ]
   }
 ];
 
-exports.render = function() {
-  console.log('formSpecs', form);
+exports.render = function(id) {
+  console.log('formSpecs', id);
   $('#main').empty().append(formSpecs({
     form: form,
     data: {id: 'test'}

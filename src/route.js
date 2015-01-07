@@ -7,5 +7,6 @@ module.exports = {
   '/': home.render,
   '/user': user.render,
   '/user/:id': user.render,
+  '/user/:id/#form': form.render,
   '/form': form.render
 };
