@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var _s = require('underscore.string');
 var Handlebars = require('hbsfy/runtime');
 
 /**
@@ -46,6 +47,8 @@ function createForm(spec) {
   }
 }
 
+var mulipleScriptTemplate = require('./templates/form/multiple_script.hbs');
+
 /**
  * FormSpecs
  */
@@ -62,10 +65,36 @@ Handlebars.registerHelper('formSpecs', function(specs, data) {
         html += '</fieldset>';
         break;
       case 'multiple':
-        html += '<input type="text" class="form-control">';
+
+        var part = '';
+        for (var j = 0; j < spec.fields.length; j++) {
+          part += createForm(spec.fields[j]);
+        }
+
+        html += '<fieldset class="form-group">';
+        //html += '<script type="application/javascript">';
+        //html += '$("#multiple_add_btn_' + spec.key + '").click(function() {';
+        //html += '  console.log("' + spec.label + '");';
+        //html += '  $("#multiple_' + spec.key + '").append("' + spec.label + '<br>")';
+        //html += '});';
+        //html += '</script>';
+        html += mulipleScriptTemplate({
+          id: spec.key,
+          label: spec.label,
+          form: '<input type="text">'
+        });
+        html += '<legend>' + spec.label + '</legend>';
+        html += '<button id="multiple_add_btn_' + spec.key + '">Add</button>';
+        html += '<p>';
+        html += '<div id="multiple_' + spec.key + '"</div>';
+        html += '</p>';
+        html += '</fieldset>';
         break;
       default:
-        html += createForm(spec);
+        var _form = createForm(spec);
+        if (_form) {
+          html += _form;
+        }
         break;
     }
   });

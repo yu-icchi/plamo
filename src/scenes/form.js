@@ -42,6 +42,52 @@ var form = [
         type: 'integer'
       }
     ]
+  },
+  { // field: ['', '', ''], fields: [[], [], []]
+    label: '配列',
+    key: 'array',
+    type: 'array',
+    field: {
+      label: '配列ストリング',
+      key: 'srt',
+      type: 'string'
+    }
+  },
+  { // [{}, {}, {}]
+    label: 'まるちぷる01',
+    key: 'multiple01',
+    type: 'multiple',
+    maxFields: 10,
+    fields: [
+      {
+        label: 'テスト01',
+        key: 'test01',
+        type: 'string'
+      },
+      {
+        label: 'テスト02',
+        key: 'test02',
+        type: 'string'
+      }
+    ]
+  },
+  { // [{}, {}, {}]
+    label: 'まるちぷる02',
+    key: 'multiple02',
+    type: 'multiple',
+    maxFields: 10,
+    fields: [
+      {
+        label: 'テスト01',
+        key: 'test01',
+        type: 'string'
+      },
+      {
+        label: 'テスト02',
+        key: 'test02',
+        type: 'string'
+      }
+    ]
   }
 ];
 
