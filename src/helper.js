@@ -70,6 +70,7 @@ Handlebars.registerHelper('formSpecs', function(specs, data) {
         for (var j = 0; j < spec.fields.length; j++) {
           part += createForm(spec.fields[j]);
         }
+        part.replace('\n', '').replace(/\s/, '').replace('\t', '');
 
         html += '<fieldset class="form-group">';
         //html += '<script type="application/javascript">';
@@ -81,7 +82,8 @@ Handlebars.registerHelper('formSpecs', function(specs, data) {
         html += mulipleScriptTemplate({
           id: spec.key,
           label: spec.label,
-          form: '<input type="text">'
+          form: new Handlebars.SafeString('<input type="text"><button >&times;</button>')
+          // form: new Handlebars.SafeString(part)
         });
         html += '<legend>' + spec.label + '</legend>';
         html += '<button id="multiple_add_btn_' + spec.key + '">Add</button>';
