@@ -5,7 +5,11 @@
 
             $("#multiple_add_btn_{{id}}").click(function(e) {
                 e.preventDefault();
-                $("#multiple_{{id}}").append('{{form}}<button class="multiple_sub_btn">&times;</button><br>');
+                $("#multiple_{{id}}").append(
+                    '<div>{{form}}' +
+                    '<button class="multiple_sub_btn">&times;</button>' +
+                    '<br></div>'
+                );
             });
 
             $(".multiple_input_group").on("click", ".multiple_sub_btn", function(e) {

@@ -16,7 +16,7 @@ Handlebars.registerHelper('link', function(name, title) {
 var inputTemplate = require('./templates/form/input.hbs');
 var textareaTemplate = require('./templates/form/textarea.hbs');
 
-function createForm(spec) {
+function createInput(spec) {
 
   switch (spec.type) {
     case 'text':
@@ -50,27 +50,24 @@ function createForm(spec) {
 var groupTemplate = require('./templates/form/group.hbs');
 var multipleTemplate = require('./templates/form/multiple.hbs');
 
-/**
- * FormSpecs
- */
-Handlebars.registerHelper('formSpecs', function(specs, data) {
-  var form;
-  var html = '<form>';
+function createForm(specs) {
+  specs = _.isArray(specs) ? specs : [specs];
+
+  var form = '', html = '';
   _.forEach(specs, function(spec) {
     switch (spec.type) {
       case 'group':
-        form = '<div>';
+        form = '';
         _.forEach(spec.fields, function(field) {
           form += createForm(field);
         });
-        form += '</div>';
         html += groupTemplate({
           label: spec.label,
           form: new Handlebars.SafeString(form.replace(/[\n\r]/g, ''))
         });
         break;
       case 'multiple':
-        form = '<div>';
+        form = '';
         _.forEach(spec.fields, function(field) {
           form += createForm(field);
         });
@@ -79,16 +76,25 @@ Handlebars.registerHelper('formSpecs', function(specs, data) {
           label: spec.label,
           form: new Handlebars.SafeString(form.replace(/[\n\r]/g, ''))
         });
-        form += '</div>';
         break;
       default:
-        var _form = createForm(spec);
+        var _form = createInput(spec);
         if (_form) {
           html += _form;
         }
         break;
     }
   });
+
+  return html;
+}
+
+/**
+ * FormSpecs
+ */
+Handlebars.registerHelper('formSpecs', function(specs, data) {
+  var html = '<form>';
+  html += createForm(specs);
   html += '</form>';
   return new Handlebars.SafeString(html);
 });

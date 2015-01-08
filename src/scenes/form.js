@@ -60,14 +60,27 @@ var form = [
     maxFields: 10,
     fields: [
       {
-        label: 'テスト01',
-        key: 'test01',
-        type: 'string'
-      },
-      {
-        label: 'テスト02',
-        key: 'test02',
-        type: 'string'
+        label: 'グループだよー',
+        key: 'group',
+        type: 'group',
+        fields: [
+          {
+            label: 'テスト01',
+            key: 'test01',
+            type: 'textarea',
+            value: 'ほほほほほほほほほほお'
+          },
+          {
+            label: 'テスト02',
+            key: 'test02',
+            type: 'integer'
+          },
+          {
+            label: 'テスト02',
+            key: 'test02',
+            type: 'integer'
+          }
+        ]
       }
     ]
   },
@@ -83,7 +96,7 @@ var form = [
         type: 'string'
       },
       {
-        label: 'テスト02',
+        label: '期間指定',
         key: 'test02',
         type: 'string'
       }
