@@ -28,14 +28,4 @@ $(function() {
   // view.createHeader();
   // メニューバーを生成する
   view.createMenu();
-
-  $("#form-specs").on("submit", function() {
-    console.log('submit');
-    $(".form-control").each(function() {
-      var id = $(this).attr("id");
-      var val = $(this).val();
-      console.log(id, val);
-    });
-    return false;
-  });
 });

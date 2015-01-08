@@ -97,6 +97,7 @@ var formTemplate = require('./templates/form/form.hbs');
 Handlebars.registerHelper('formSpecs', function(specs, data) {
   var form = createForm(specs);
   var html = formTemplate({
+    action: '/#/form',
     form: new Handlebars.SafeString(form.replace(/[\n\r]/g, ''))
   });
   return new Handlebars.SafeString(html);

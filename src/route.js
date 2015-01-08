@@ -8,5 +8,8 @@ module.exports = {
   '/user': user.render,
   '/user/:id': user.render,
   '/user/:id/#form': form.render,
-  '/form': form.render
+  '/form': form.render,
+  '/post/:data': function(data) {
+    console.log('post', data);
+  }
 };

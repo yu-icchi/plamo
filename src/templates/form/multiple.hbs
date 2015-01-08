@@ -7,7 +7,7 @@
                 e.preventDefault();
                 $("#multiple_{{id}}").append(
                     '<div>{{form}}' +
-                    '<button class="multiple_sub_btn">&times;</button>' +
+                    '<button class="btn btn-default multiple_sub_btn">&times;</button>' +
                     '<br></div>'
                 );
             });
@@ -20,7 +20,7 @@
         </script>
 
         <legend>{{label}}</legend>
-        <button id="multiple_add_btn_{{id}}">Add</button>
+        <button id="multiple_add_btn_{{id}}" class="btn btn-default">Add</button>
         <p>
             <div id="multiple_{{id}}"></div>
         </p>

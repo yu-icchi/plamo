@@ -1,15 +1,43 @@
 <form id="form-specs">
-    <!--<script type="application/javascript">-->
-        <!--$("#form-specs").on("submit", function() {-->
-            <!--console.log('submit');-->
-            <!--$(".form-control").each(function() {-->
-                <!--var id = $(this).attr("id");-->
-                <!--var val = $(this).val();-->
-                <!--console.log(id, val);-->
-            <!--});-->
-            <!--return false;-->
-        <!--});-->
-    <!--</script>-->
+    <script type="application/javascript">
+        $('#form-specs').on('submit', function(e) {
+            e.preventDefault();
+
+            console.log('submit');
+
+            var submit = $(this).find('#submit');
+
+            var data = {};
+            $('.form-control').each(function() {
+                var id = $(this).attr('id');
+                var val = $(this).val();
+                data[id] = val;
+                console.log(id, val);
+            });
+
+            $.ajax({
+                url: '/post',
+                type: 'post',
+                data: JSON.stringify(data),
+                beforeSend: function() {
+                    submit.attr('disabled', true);
+                    console.log('beforeSend');
+                },
+                complete: function() {
+                    submit.attr('disabled', false);
+                    console.log('complete');
+                },
+                success: function() {
+                    console.log('success');
+                },
+                error: function() {
+                    console.log('error');
+                }
+            });
+
+            return false;
+        });
+    </script>
     {{form}}
-    <input type="submit" value="OK">
+    <button id="submit" type="submit" class="btn btn-default">OK</button>
 </form>

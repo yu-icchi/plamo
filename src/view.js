@@ -15,5 +15,3 @@ exports.createMenu = function() {
 exports.createHeader = function() {
   $('#header').empty().append(header());
 };
-
-
