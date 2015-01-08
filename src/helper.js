@@ -1,5 +1,4 @@
 var _ = require('lodash');
-var _s = require('underscore.string');
 var Handlebars = require('hbsfy/runtime');
 
 /**
@@ -92,9 +91,13 @@ function createForm(specs) {
 /**
  * FormSpecs
  */
+
+var formTemplate = require('./templates/form/form.hbs');
+
 Handlebars.registerHelper('formSpecs', function(specs, data) {
-  var html = '<form>';
-  html += createForm(specs);
-  html += '</form>';
+  var form = createForm(specs);
+  var html = formTemplate({
+    form: new Handlebars.SafeString(form.replace(/[\n\r]/g, ''))
+  });
   return new Handlebars.SafeString(html);
 });
