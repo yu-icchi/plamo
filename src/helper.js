@@ -47,50 +47,39 @@ function createForm(spec) {
   }
 }
 
-var mulipleScriptTemplate = require('./templates/form/multiple_script.hbs');
+var groupTemplate = require('./templates/form/group.hbs');
+var multipleTemplate = require('./templates/form/multiple.hbs');
 
 /**
  * FormSpecs
  */
 Handlebars.registerHelper('formSpecs', function(specs, data) {
+  var form;
   var html = '<form>';
   _.forEach(specs, function(spec) {
     switch (spec.type) {
       case 'group':
-        html += '<fieldset class="form-group">';
-        html += '<legend>' + spec.label + '</legend>';
-        for (var i = 0; i < spec.fields.length; i++) {
-          html += createForm(spec.fields[i]);
-        }
-        html += '</fieldset>';
+        form = '<div>';
+        _.forEach(spec.fields, function(field) {
+          form += createForm(field);
+        });
+        form += '</div>';
+        html += groupTemplate({
+          label: spec.label,
+          form: new Handlebars.SafeString(form.replace(/[\n\r]/g, ''))
+        });
         break;
       case 'multiple':
-
-        var part = '';
-        for (var j = 0; j < spec.fields.length; j++) {
-          part += createForm(spec.fields[j]);
-        }
-        part.replace('\n', '').replace(/\s/, '').replace('\t', '');
-
-        html += '<fieldset class="form-group">';
-        //html += '<script type="application/javascript">';
-        //html += '$("#multiple_add_btn_' + spec.key + '").click(function() {';
-        //html += '  console.log("' + spec.label + '");';
-        //html += '  $("#multiple_' + spec.key + '").append("' + spec.label + '<br>")';
-        //html += '});';
-        //html += '</script>';
-        html += mulipleScriptTemplate({
+        form = '<div>';
+        _.forEach(spec.fields, function(field) {
+          form += createForm(field);
+        });
+        html += multipleTemplate({
           id: spec.key,
           label: spec.label,
-          form: new Handlebars.SafeString('<input type="text"><button >&times;</button>')
-          // form: new Handlebars.SafeString(part)
+          form: new Handlebars.SafeString(form.replace(/[\n\r]/g, ''))
         });
-        html += '<legend>' + spec.label + '</legend>';
-        html += '<button id="multiple_add_btn_' + spec.key + '">Add</button>';
-        html += '<p>';
-        html += '<div id="multiple_' + spec.key + '"</div>';
-        html += '</p>';
-        html += '</fieldset>';
+        form += '</div>';
         break;
       default:
         var _form = createForm(spec);

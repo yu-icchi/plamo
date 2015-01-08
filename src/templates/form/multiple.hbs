@@ -1,0 +1,24 @@
+<div class="multiple_input_group">
+    <fieldset class="form-group">
+
+        <script type="application/javascript">
+
+            $("#multiple_add_btn_{{id}}").click(function(e) {
+                e.preventDefault();
+                $("#multiple_{{id}}").append('{{form}}<button class="multiple_sub_btn">&times;</button><br>');
+            });
+
+            $(".multiple_input_group").on("click", ".multiple_sub_btn", function(e) {
+                e.preventDefault();
+                $(this).parent('div').remove();
+            });
+
+        </script>
+
+        <legend>{{label}}</legend>
+        <button id="multiple_add_btn_{{id}}">Add</button>
+        <p>
+            <div id="multiple_{{id}}"></div>
+        </p>
+    </fieldset>
+</div>
