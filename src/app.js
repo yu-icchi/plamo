@@ -25,7 +25,7 @@ $(function() {
   router.init('/'); // base root
 
   // ヘッダーを生成する
-  // view.createHeader();
+  view.createHeader();
   // メニューバーを生成する
   view.createMenu();
 });
