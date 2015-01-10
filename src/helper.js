@@ -14,6 +14,9 @@ Handlebars.registerHelper('link', function(name, title) {
 
 var inputTemplate = require('./templates/form/input.hbs');
 var textareaTemplate = require('./templates/form/textarea.hbs');
+var checkboxTemplate = require('./templates/form/checkbox.hbs');
+var radioTemplate = require('./templates/form/radio.hbs');
+var selectTemplate = require('./templates/form/select.hbs');
 
 function createInput(spec) {
 
@@ -43,7 +46,33 @@ function createInput(spec) {
         placeholder: spec.placeholder,
         value: spec.value
       });
+    case 'checkbox':
+      return checkboxTemplate({
+        label: spec.label,
+        options: spec.options
+      });
+    case 'radio':
+      return radioTemplate({
+        label: spec.label,
+        options: _.map(spec.options, function(option) {
+          return {
+            label: option.label,
+            value: option.value,
+            group: spec.key
+          };
+        })
+      });
+    case 'select':
+      return selectTemplate({
+        id: spec.key,
+        label: spec.label,
+        options: spec.options
+      });
   }
+}
+
+function innerForm(form) {
+  return new Handlebars.SafeString(form.replace(/[\n\r]/g, ''));
 }
 
 var groupTemplate = require('./templates/form/group.hbs');
@@ -62,7 +91,7 @@ function createForm(specs) {
         });
         html += groupTemplate({
           label: spec.label,
-          form: new Handlebars.SafeString(form.replace(/[\n\r]/g, ''))
+          form: innerForm(form)
         });
         break;
       case 'multiple':
@@ -73,7 +102,7 @@ function createForm(specs) {
         html += multipleTemplate({
           id: spec.key,
           label: spec.label,
-          form: new Handlebars.SafeString(form.replace(/[\n\r]/g, ''))
+          form: innerForm(form)
         });
         break;
       default:
@@ -98,7 +127,7 @@ Handlebars.registerHelper('formSpecs', function(specs, data) {
   var form = createForm(specs);
   var html = formTemplate({
     action: '/#/form',
-    form: new Handlebars.SafeString(form.replace(/[\n\r]/g, ''))
+    form: innerForm(form)
   });
   return new Handlebars.SafeString(html);
 });
