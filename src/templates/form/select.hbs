@@ -1,7 +1,13 @@
-<select class="input-field">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-</select>
+<div class="input-field col s12">
+    <label>{{label}}</label>
+    <select>
+        <option value="" disabled selected>Choose your option</option>
+        {{#each options}}
+            <option value="{{value}}">{{label}}</option>
+        {{/each}}
+    </select>
+</div>
+
+<script type="application/javascript">
+    $('select').material_select();
+</script>

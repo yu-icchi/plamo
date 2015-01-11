@@ -11,5 +11,58 @@ user page {{this}}
 <div id="modal1" class="modal">
     <h4>Modal Header</h4>
     <p>A bunch of text</p>
-    <a href="#" class="waves-effect btn-flat modal-close">Agree</a>
+    <a href="#" class="waves-effect btn-flat modal-close">Canal</a>
+    <a href="#" class="btn waves-effect waves-light btn-flat modal-close">Agree</a>
 </div>
+
+<script type="application/javascript">
+    $(document).ready(function(){
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
+    });
+</script>
+
+<nav>
+    <ul class="container">
+        <li>
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li>
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<ul id="slide-out" class="side-nav full">
+    <li><a href="#!">First Sidebar Link</a></li>
+    <li><a href="#!">Second Sidebar Link</a></li>
+    <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <div class="collapsible-header">Dropdown<i class="mdi-navigation-arrow-drop-down"></i></div>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="#!">First Dropdown Link</a></li>
+                        <li><a href="#!">Second Dropdown Link</a></li>
+                        <li><a href="#!">Third Dropdown Link</a></li>
+                        <li><a href="#!">Fourth Dropdown Link</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </li>
+</ul>
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+
+<script type="application/javascript">
+    $(".button-collapse").sideNav({edge: 'right'});
+</script>

@@ -1,0 +1,30 @@
+<div class="array_input_group">
+    <fieldset class="input-field col s12">
+
+        <script type="application/javascript">
+
+            $("#array_add_btn_{{id}}").click(function(e) {
+                e.preventDefault();
+                $("#array_{{id}}").append(
+                        '<fieldset>' +
+                        '<a class="btn waves-effect waves-light btn-flat array_sub_btn"><i class="mdi-content-clear"></i></a>' +
+                        '{{form}}</fieldset>'
+                );
+            });
+
+            $(".array_input_group").on("click", ".array_sub_btn", function(e) {
+                e.preventDefault();
+                $(this).parent('fieldset').remove();
+            });
+
+        </script>
+
+        <legend>{{label}}</legend>
+        <a id="array_add_btn_{{id}}" class="btn waves-effect waves-light">
+            <i class="mdi-content-add-circle"></i>
+        </a>
+        <p>
+        <div id="array_{{id}}"></div>
+        </p>
+    </fieldset>
+</div>

@@ -14,6 +14,9 @@ Handlebars.registerHelper('link', function(name, title) {
 
 var inputTemplate = require('./templates/form/input.hbs');
 var textareaTemplate = require('./templates/form/textarea.hbs');
+var selectTemplate = require('./templates/form/select.hbs');
+var radioTemplate = require('./templates/form/radio.hbs');
+var checkboxTemplate = require('./templates/form/checkbox.hbs');
 
 function createInput(spec) {
 
@@ -43,17 +46,48 @@ function createInput(spec) {
         placeholder: spec.placeholder,
         value: spec.value
       });
+    case 'select':
+      return selectTemplate({
+        label: spec.label,
+        options: spec.options
+      });
+    case 'radio':
+      return radioTemplate({
+        label: spec.label,
+        options: _.map(spec.options, function(option) {
+          return {
+            key: spec.key + '.' + option.value,
+            group: spec.key,
+            label: option.label,
+            value: option.value
+          };
+        })
+      });
+    case 'checkbox':
+      return checkboxTemplate({
+        label: spec.label,
+        options: _.map(spec.options, function(option) {
+          return {
+            key: spec.key + '.' + option.value,
+            group: spec.key,
+            label: option.label,
+            value: option.value
+          };
+        })
+      });
   }
 }
 
 var groupTemplate = require('./templates/form/group.hbs');
+var arrayTemplate = require('./templates/form/array.hbs');
 var multipleTemplate = require('./templates/form/multiple.hbs');
 
 function createForm(specs) {
   specs = _.isArray(specs) ? specs : [specs];
 
-  var form = '', html = '';
+  var html = '';
   _.forEach(specs, function(spec) {
+    var form = '';
     switch (spec.type) {
       case 'group':
         form = '';
@@ -61,6 +95,14 @@ function createForm(specs) {
           form += createForm(field);
         });
         html += groupTemplate({
+          label: spec.label,
+          form: new Handlebars.SafeString(form.replace(/[\n\r]/g, ''))
+        });
+        break;
+      case 'array':
+        form = createForm(spec.field);
+        html += arrayTemplate({
+          id: spec.key,
           label: spec.label,
           form: new Handlebars.SafeString(form.replace(/[\n\r]/g, ''))
         });

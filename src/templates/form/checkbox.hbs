@@ -1,6 +1,9 @@
-<div class="checkbox">
-    <label>
-        <input type="checkbox" value="{{value}}">
-        {{label}}
-    </label>
+<div class="col s12">
+    <label>{{label}}</label>
+    <p>
+        {{#each options}}
+            <input name="{{group}}" type="checkbox" id="{{key}}" />
+            <label for="{{key}}">{{label}}</label>
+        {{/each}}
+    </p>
 </div>

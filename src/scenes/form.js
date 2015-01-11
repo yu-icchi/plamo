@@ -21,6 +21,41 @@ var form = [
     type: 'number'
   },
   {
+    key: 'select01',
+    type: 'select',
+    options: [
+      {label: 'option01', value: 1},
+      {label: 'option02', value: 2},
+      {label: 'option03', value: 3}
+    ]
+  },
+  {
+    label: 'ラジオボタン',
+    key: 'radio01',
+    type: 'radio',
+    options: [
+      {label: 'オプション01', value: 1},
+      {label: 'オプション02', value: 2},
+      {label: 'オプション03', value: 3},
+      {label: 'オプション04', value: 4},
+      {label: 'オプション05', value: 5},
+      {label: 'オプション06', value: 6},
+      {label: 'オプション07', value: 7},
+      {label: 'オプション08', value: 8},
+      {label: 'オプション09', value: 9}
+    ]
+  },
+  {
+    label: 'チェックボックスボタン',
+    key: 'checkbox01',
+    type: 'checkbox',
+    options: [
+      {label: 'チェック01', value: 1},
+      {label: 'チェック02', value: 2},
+      {label: 'チェック03', value: 3}
+    ]
+  },
+  {
     label: 'グループだよー',
     key: 'group',
     type: 'group',
@@ -45,7 +80,7 @@ var form = [
   },
   { // field: ['', '', ''], fields: [[], [], []]
     label: '配列',
-    key: 'array',
+    key: 'array01',
     type: 'array',
     field: {
       label: '配列ストリング',

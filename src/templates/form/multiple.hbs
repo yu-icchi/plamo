@@ -7,7 +7,7 @@
                 e.preventDefault();
                 $("#multiple_{{id}}").append(
                     '<fieldset>' +
-                    '<button class="btn waves-effect waves-light btn-flat multiple_sub_btn">&times;</button>' +
+                    '<a class="btn waves-effect waves-light btn-flat multiple_sub_btn"><i class="mdi-content-clear"></i></a>' +
                     '{{form}}</fieldset>'
                 );
             });
@@ -20,7 +20,9 @@
         </script>
 
         <legend>{{label}}</legend>
-        <button id="multiple_add_btn_{{id}}" class="btn waves-effect waves-light">Add</button>
+        <a id="multiple_add_btn_{{id}}" class="btn waves-effect waves-light">
+            <i class="mdi-content-add-circle"></i>
+        </a>
         <p>
             <div id="multiple_{{id}}"></div>
         </p>
