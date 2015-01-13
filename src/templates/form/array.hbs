@@ -1,0 +1,28 @@
+<div class="array_input_group">
+    <fieldset class="form-group">
+
+        <script type="application/javascript">
+
+            $("#array_add_btn_{{id}}").click(function(e) {
+                e.preventDefault();
+                $("#array_{{id}}").append(
+                    '<div>{{form}}' +
+                    '<button class="btn btn-default array_sub_btn">&times;</button>' +
+                    '<br></div>'
+                );
+            });
+
+            $(".array_input_group").on("click", ".array_sub_btn", function(e) {
+                e.preventDefault();
+                $(this).parent('div').remove();
+            });
+
+        </script>
+
+        <legend>{{label}}</legend>
+        <button id="array_add_btn_{{id}}" class="btn btn-default">Add</button>
+        <p>
+            <div id="array_{{id}}"></div>
+        </p>
+    </fieldset>
+</div>

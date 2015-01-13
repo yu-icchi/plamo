@@ -28,26 +28,26 @@ var form = [
       {label: 'チェック01', value: 1},
       {label: 'チェック02', value: 2},
       {label: 'チェック03', value: 3},
-      {label: 'チェック01', value: 1},
-      {label: 'チェック02', value: 2},
-      {label: 'チェック03', value: 3},
-      {label: 'チェック01', value: 1},
-      {label: 'チェック02', value: 2},
-      {label: 'チェック03', value: 3},
-      {label: 'チェック01', value: 1},
-      {label: 'チェック02', value: 2},
-      {label: 'チェック03', value: 3},
-      {label: 'チェック01', value: 1},
-      {label: 'チェック02', value: 2},
-      {label: 'チェック03', value: 3},
-      {label: 'チェック01', value: 1},
-      {label: 'チェック02', value: 2},
-      {label: 'チェック03', value: 3}
+      {label: 'チェック04', value: 4},
+      {label: 'チェック05', value: 5},
+      {label: 'チェック06', value: 6},
+      {label: 'チェック07', value: 7},
+      {label: 'チェック08', value: 8},
+      {label: 'チェック09', value: 9},
+      {label: 'チェック10', value: 10},
+      {label: 'チェック11', value: 11},
+      {label: 'チェック12', value: 12},
+      {label: 'チェック13', value: 13},
+      {label: 'チェック14', value: 14},
+      {label: 'チェック15', value: 15},
+      {label: 'チェック16', value: 16},
+      {label: 'チェック17', value: 17},
+      {label: 'チェック18', value: 18}
     ]
   },
   {
     label: 'ラジオボタン',
-    key: 'radio-btn',
+    key: 'radio',
     type: 'radio',
     options: [
       {label: 'ラジオ01', value: 'hoge1'},
@@ -75,11 +75,6 @@ var form = [
         key: 'test01',
         type: 'textarea',
         value: 'ほほほほほほほほほほお'
-      },
-      {
-        label: 'テスト02',
-        key: 'test02',
-        type: 'integer'
       },
       {
         label: 'テスト02',
@@ -119,31 +114,8 @@ var form = [
             label: 'テスト02',
             key: 'test02',
             type: 'integer'
-          },
-          {
-            label: 'テスト02',
-            key: 'test02',
-            type: 'integer'
           }
         ]
-      }
-    ]
-  },
-  { // [{}, {}, {}]
-    label: 'まるちぷる02',
-    key: 'multiple02',
-    type: 'multiple',
-    maxFields: 10,
-    fields: [
-      {
-        label: 'テスト01',
-        key: 'test01',
-        type: 'string'
-      },
-      {
-        label: '期間指定',
-        key: 'test02',
-        type: 'string'
       }
     ]
   }

@@ -12,7 +12,7 @@ var view = require('./view');
 /**
  * Application Execute
  */
-$(function() {
+$(document).ready(function() {
 
   // Handlebarsのヘルパーのセットアップ
   require('./helper');

@@ -49,7 +49,13 @@ function createInput(spec) {
     case 'checkbox':
       return checkboxTemplate({
         label: spec.label,
-        options: spec.options
+        options: _.map(spec.options, function(option) {
+          return {
+            label: option.label,
+            value: option.value,
+            group: spec.key
+          };
+        })
       });
     case 'radio':
       return radioTemplate({
@@ -76,6 +82,7 @@ function innerForm(form) {
 }
 
 var groupTemplate = require('./templates/form/group.hbs');
+var arrayTemplate = require('./templates/form/array.hbs');
 var multipleTemplate = require('./templates/form/multiple.hbs');
 
 function createForm(specs) {
@@ -87,6 +94,7 @@ function createForm(specs) {
       case 'group':
         form = '';
         _.forEach(spec.fields, function(field) {
+          field.key = spec.key + '[' + field.key + ']';
           form += createForm(field);
         });
         html += groupTemplate({
@@ -94,9 +102,19 @@ function createForm(specs) {
           form: innerForm(form)
         });
         break;
+      case 'array':
+        spec.field.key = spec.key + '[]';
+        form = createForm(spec.field);
+        html += arrayTemplate({
+          id: spec.key,
+          label: spec.label,
+          form: innerForm(form)
+        });
+        break;
       case 'multiple':
         form = '';
         _.forEach(spec.fields, function(field) {
+          field.key = spec.key + '[][' + field.key + ']';
           form += createForm(field);
         });
         html += multipleTemplate({

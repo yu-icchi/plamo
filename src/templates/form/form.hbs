@@ -15,6 +15,9 @@
                 console.log(id, val);
             });
 
+            var arrVal = $('#form-specs').serializeObject();
+            console.log(arrVal);
+
             $.ajax({
                 url: '/post',
                 type: 'post',
