@@ -28,4 +28,18 @@ $(document).ready(function() {
   // view.createHeader();
   // メニューバーを生成する
   view.createMenu();
+
+  $('#main').on('click', '#submit', function() {
+
+    $('.form-control').each(function() {
+      var id = $(this).attr('id');
+      var val = $(this).val();
+      console.log(id, val);
+    });
+
+  });
 });
+
+//$(document).on('click', '#submit', function(e) {
+//  console.log('form');
+//});

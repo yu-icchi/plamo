@@ -28,14 +28,16 @@ function createInput(spec) {
         id: spec.key,
         type: 'text',
         placeholder: spec.placeholder,
-        value: spec.value
+        value: spec.value,
+        model: 'string'
       });
     case 'textarea':
       return textareaTemplate({
         label: spec.label,
         id: spec.key,
         rows: spec.rows || 3,
-        value: spec.value
+        value: spec.value,
+        model: 'string'
       });
     case 'integer':
     case 'number':
@@ -44,13 +46,15 @@ function createInput(spec) {
         id: spec.key,
         type: 'number',
         placeholder: spec.placeholder,
-        value: spec.value
+        value: spec.value,
+        model: 'number'
       });
     case 'checkbox':
       return checkboxTemplate({
         label: spec.label,
         options: _.map(spec.options, function(option) {
           return {
+            model: spec.model,
             label: option.label,
             value: option.value,
             group: spec.key
@@ -62,6 +66,7 @@ function createInput(spec) {
         label: spec.label,
         options: _.map(spec.options, function(option) {
           return {
+            model: spec.model,
             label: option.label,
             value: option.value,
             group: spec.key
@@ -70,6 +75,7 @@ function createInput(spec) {
       });
     case 'select':
       return selectTemplate({
+        model: spec.model,
         id: spec.key,
         label: spec.label,
         options: spec.options
