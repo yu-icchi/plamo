@@ -7,24 +7,27 @@ var form = [
   {
     label: '文字列',
     key: '_id',
-    type: 'string',
+    type: 'text',
+    class: 'string',
     placeholder: 'IDを入力してください'
   },
   {
     label: '数字(整数)',
     key: 'point',
-    type: 'integer'
+    type: 'text',
+    class: 'integer'
   },
   {
     label: '数字(実数)',
     key: 'date',
-    type: 'number'
+    type: 'text',
+    class: 'number'
   },
   {
     label: 'チェックボックス',
     key: 'check',
     type: 'checkbox',
-    model: 'number',
+    class: 'number',
     options: [
       {label: 'チェック01', value: 1},
       {label: 'チェック02', value: 2}
@@ -34,7 +37,7 @@ var form = [
     label: 'ラジオボタン',
     key: 'radio',
     type: 'radio',
-    model: 'string',
+    class: 'string',
     options: [
       {label: 'ラジオ01', value: 'hoge1'},
       {label: 'ラジオ02', value: 'hoge2'},
@@ -45,7 +48,7 @@ var form = [
     label: 'セレクト',
     key: 'select',
     type: 'select',
-    model: 'number',
+    class: 'number',
     options: [
       {label: 'セレクト01', value: 0},
       {label: 'セレクト02', value: 1},
@@ -66,13 +69,13 @@ var form = [
       {
         label: 'テスト02',
         key: 'test02',
-        type: 'integer'
+        type: 'text'
       },
       {
         label: 'ラジオボタン',
         key: 'radio',
         type: 'radio',
-        model: 'string',
+        class: 'string',
         options: [
           {label: 'ラジオ01', value: 'hoge1'},
           {label: 'ラジオ02', value: 'hoge2'},
@@ -83,12 +86,12 @@ var form = [
   },
   { // field: ['', '', ''], fields: [[], [], []]
     label: '配列',
-    key: 'array',
+    key: 'array01',
     type: 'array',
     field: {
       label: '配列ストリング',
       key: 'srt',
-      type: 'string'
+      type: 'text'
     }
   },
   { // [{}, {}, {}]
@@ -111,7 +114,7 @@ var form = [
           {
             label: 'テスト02',
             key: 'test02',
-            type: 'integer'
+            type: 'text'
           }
         ]
       }

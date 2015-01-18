@@ -31,8 +31,21 @@
   "browserify": {
     "transform": [
       "hbsfy",
-      "brfs"
+      "brfs",
+      "browserify-shim"
     ]
+  },
+  "browser": {
+    "jquery": "./public/components/jquery/dist/jquery.js",
+    "jquery-serialize-object": "./public/components/jquery-serialize-object/dist/jquery-serialize-object.min.js"
+  },
+  "browserify-shim": {
+    "jquery": "$",
+    "jquery-serialize-object": {
+      "depends": [
+        "jquery:$"
+      ]
+    }
   },
   "scripts": {
     "postinstall": ""

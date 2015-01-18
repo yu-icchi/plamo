@@ -22,14 +22,13 @@ function createInput(spec) {
 
   switch (spec.type) {
     case 'text':
-    case 'string':
       return inputTemplate({
         label: spec.label,
         id: spec.key,
-        type: 'text',
+        type: (spec.class === 'number' || spec.class === 'integer') ? 'number' : 'text',
         placeholder: spec.placeholder,
         value: spec.value,
-        model: 'string'
+        class: spec.class || 'string'
       });
     case 'textarea':
       return textareaTemplate({
@@ -37,24 +36,14 @@ function createInput(spec) {
         id: spec.key,
         rows: spec.rows || 3,
         value: spec.value,
-        model: 'string'
-      });
-    case 'integer':
-    case 'number':
-      return inputTemplate({
-        label: spec.label,
-        id: spec.key,
-        type: 'number',
-        placeholder: spec.placeholder,
-        value: spec.value,
-        model: 'number'
+        class: 'string'
       });
     case 'checkbox':
       return checkboxTemplate({
         label: spec.label,
         options: _.map(spec.options, function(option) {
           return {
-            model: spec.model,
+            class: spec.class,
             label: option.label,
             value: option.value,
             group: spec.key
@@ -66,7 +55,7 @@ function createInput(spec) {
         label: spec.label,
         options: _.map(spec.options, function(option) {
           return {
-            model: spec.model,
+            class: spec.class,
             label: option.label,
             value: option.value,
             group: spec.key
@@ -75,7 +64,7 @@ function createInput(spec) {
       });
     case 'select':
       return selectTemplate({
-        model: spec.model,
+        class: spec.class,
         id: spec.key,
         label: spec.label,
         options: spec.options

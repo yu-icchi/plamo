@@ -29,17 +29,5 @@ $(document).ready(function() {
   // メニューバーを生成する
   view.createMenu();
 
-  $('#main').on('click', '#submit', function() {
-
-    $('.form-control').each(function() {
-      var id = $(this).attr('id');
-      var val = $(this).val();
-      console.log(id, val);
-    });
-
-  });
+  view.createForm();
 });
-
-//$(document).on('click', '#submit', function(e) {
-//  console.log('form');
-//});

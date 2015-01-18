@@ -57,6 +57,7 @@ gulp.task('browserSync', function() {
  */
 gulp.task('watch', ['build', 'browserSync'], function() {
   d.run(function() {
+    gulp.watch('./src/*', ['build']);
     gulp.watch('./src/**/*', ['build']);
   });
   d.on('error', function(err) {
